@@ -1,0 +1,52 @@
+<!-- app-display.component.html -->
+<div [ngClass]="{'mainDisplayContainer': fileData, 'rounded': fileData, 'p-2': fileData, 'my-3': fileData}"
+    style="background-color:#eee5e5;">
+
+    <h2 *ngIf="fileData">Displaying File Data:</h2>
+
+    <!-- Check if fileData is available -->
+    <div *ngIf="fileData" class="display-container container col-md-12 border border-2 border-dark">
+
+        <div class="selectContainer my-3 d-flex flex-row">
+            <!-- Check if there are columns in fileData[0] -->
+            <ng-container *ngIf="fileData[0] && fileData[0].length > 0">
+                <h5 class="fw-bold">Select any two Columns from Available Columns Names:</h5>
+                <select class="selectBox ms-3 rounded" [(ngModel)]="selectedColumn1">
+                    <!-- Loop through columns in fileData[0] -->
+                    <option class="select1" *ngFor="let column of fileData[0]">{{ column }}</option>
+                </select>
+                <select class="selectBox ms-3 rounded" [(ngModel)]="selectedColumn2">
+                    <!-- Loop through columns in fileData[0] -->
+                    <option class="select2" *ngFor="let column of fileData[0]">{{ column }}</option>
+                </select>
+            </ng-container>
+        </div>
+
+        <!-- Display the table -->
+        <table class="scrollable-table">
+            <thead>
+                <tr>
+                    <!-- Ensure that the number of th elements matches the columns in fileData[0] -->
+                    <ng-container *ngFor="let header of fileData[0]; let i = index">
+                        <th>
+                            <input class="bg-dark text-center text-light" type="text" [(ngModel)]="fileData[0][i]" />
+                        </th>
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of fileData.slice(1); let rowIndex = index">
+                    <td *ngFor="let cell of row; let i = index">
+                        <input type="text" [(ngModel)]="fileData[rowIndex + 1][i]" class="no-border-input" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- "Calculate" button, conditionally displayed only if fileData is present -->
+<div *ngIf="fileData" class="calcCorrBtnBox mt-3">
+    <button class="calcCorrBtnFile btn btn-primary" style="width: 20vw;" (click)="calculate()">Calculate</button>
+</div>

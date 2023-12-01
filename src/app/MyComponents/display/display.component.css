@@ -1,0 +1,16 @@
+/* app-display.component.css */
+
+.display-container {
+  max-width: 70vw;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.scrollable-table {
+  width: 100%;
+}
+
+.selectBox {
+  width: 10vw;
+  background-color: #b3e9b2;
+}

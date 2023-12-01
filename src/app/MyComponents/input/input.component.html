@@ -1,0 +1,39 @@
+<div class="inputBoxContainer d-flex justify-content-around container mt-5 border border-2 border-dark rounded p-4">
+    <!-- Left side container part -->
+    <div class="inputManualBox row d-flex justify-content-around col-7 rounded p-2" style="background-color: #eee5e5;">
+        <h2>Manual Input:</h2>
+
+        <div class="col-5 border border-1 border-secondary shadow-sm bg-body-light rounded mt-2 p-2">
+            <div class="label d-flex mt-2">
+                <p class="mx-auto fs-5 fw-bold">X Values</p>
+            </div>
+            <textarea id="columnX" class="form-control" rows="10" [(ngModel)]="xValues_input"></textarea>
+        </div>
+
+        <div class="col-5 border border-1 border-secondary shadow-sm bg-body-light rounded mt-2 p-2">
+            <div class="label d-flex mt-2">
+                <p class="mx-auto fs-5 fw-bold">Y Values</p>
+            </div>
+            <textarea id="columnY" class="form-control" rows="10" [(ngModel)]="yValues_input"></textarea>
+        </div>
+
+        <b class="mt-2 font font-weight-bold">Format of Input: [1,2,3,4, ....]</b>
+    </div>
+
+    <!-- Right side container part -->
+    <div class="inputUploadBox col-4 p-2 rounded" style="background-color: #eee5e5;">
+        <h2>Upload File:</h2>
+        <div class="d-flex flex-column" style="height: 53vh;">
+            <input type="file" id="fileUpload" class="form-control-file mt-5 ms-3 font fw-bold"
+                (change)="onFileChange($event)">
+            <!-- Add (change) event listener to capture file -->
+            <!-- <button class="btn btn-primary mt-5 ms-3" style="width: 10vw;">Upload</button> -->
+        </div>
+
+        <b class=" font font-weight-bold">File could be csv, xl</b>
+    </div>
+</div>
+
+<div class="calcCorrBtnBox mt-3">
+    <button class="calcCorrBtnManual btn btn-primary" style="width: 20vw;" (click)="calculate()">Calculate</button>
+</div>
